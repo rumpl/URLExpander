@@ -1,0 +1,21 @@
+﻿<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:s="http://schemas.seesmic.com/sdp/2010/deployment">
+
+  <s:Plugin>
+    <s:Id>AA1C2920-63B7-49A0-9BE4-011EDB81C2E8</s:Id>
+    <s:Name>URL Expander</s:Name>
+    <s:Description>Expands shortened links (biy.ly and others...)</s:Description>
+    <s:Version>0.0.1.0</s:Version>
+    <s:Vendor>Dordje Lukic</s:Vendor>
+    <s:Copyright>Djordje Lukic</s:Copyright>
+    <s:HomepageUrl>http://www.rumpl.org</s:HomepageUrl>
+    <s:LogoUri>Assets/Img/logo-pref.png</s:LogoUri>
+    <s:PlatformVersion>1.0.0</s:PlatformVersion>
+    <s:UpdatesManifestUrl>http://www.rumpl.org/seesmic/urlexpander/updatemanifest.xaml</s:UpdatesManifestUrl>
+  </s:Plugin>
+
+  <Deployment.Parts>
+  </Deployment.Parts>
+
+</Deployment>

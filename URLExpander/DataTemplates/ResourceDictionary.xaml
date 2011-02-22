@@ -1,0 +1,13 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:URLExpander.DataTemplates">
+
+    <DataTemplate x:Key="SmallLogoTemplate">
+        <Image Source="/URLExpander;component/Assets/Img/logo-small.png" Width="16" Height="16" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="ContentTemplate">
+        <local:UrlInfo x:Name="UrlInfos" Attachment="{Binding}" />
+    </DataTemplate>
+
+</ResourceDictionary>
