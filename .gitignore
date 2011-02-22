@@ -2,5 +2,6 @@
 *.suo
 Bin/
 Obj/
+obj/
 _ReSharper.*
 Lib/*
