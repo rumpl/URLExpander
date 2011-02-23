@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URLExpander", "URLExpander\URLExpander.csproj", "{AF97F098-9645-4E1D-AAED-15A018AAE08C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{5F4F8D61-0A2B-4E06-9944-252D2850FEDB}"
+	ProjectSection(SolutionItems) = preProject
+		Lib\Seesmic.Sdp.Extensibility.dll = Lib\Seesmic.Sdp.Extensibility.dll
+		Lib\Seesmic.Sdp.Utils.dll = Lib\Seesmic.Sdp.Utils.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
