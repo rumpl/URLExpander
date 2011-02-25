@@ -1,14 +1,14 @@
-﻿using System.ComponentModel.Composition;
-using System.Text.RegularExpressions;
-using Seesmic.Sdp.Extensibility;
-
-namespace URLExpander
+﻿namespace URLExpander
 {
     using System;
     using System.Collections.Generic;
+	using System.ComponentModel.Composition;
     using System.Linq;
     using System.Net;
     using System.Runtime.Serialization.Json;
+	using System.Text.RegularExpressions;
+	
+	using Seesmic.Sdp.Extensibility;
 
     using URLExpander.Models;
     using URLExpander.ViewModels;

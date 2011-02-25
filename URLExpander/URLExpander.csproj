@@ -86,6 +86,7 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitlyService.cs" />
     <Compile Include="DataTemplates\UrlInfo.xaml.cs">
       <DependentUpon>UrlInfo.xaml</DependentUpon>
     </Compile>
