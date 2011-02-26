@@ -86,15 +86,19 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BitlyService.cs" />
+    <Compile Include="BitlyUrlExpander.cs" />
     <Compile Include="DataTemplates\UrlInfo.xaml.cs">
       <DependentUpon>UrlInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\BitlyData.cs" />
-    <Compile Include="Models\BitlyResponse.cs" />
+    <Compile Include="Models\bit.ly\BitlyExpandData.cs" />
+    <Compile Include="Models\bit.ly\BitlyExpandResponse.cs" />
+    <Compile Include="Models\bit.ly\BitlyDomainResponse.cs" />
+    <Compile Include="Models\bit.ly\BitlyDomainData.cs" />
+    <Compile Include="Models\bit.ly\IBitlyResponse.cs" />
+    <Compile Include="UrlExpanderBase.cs" />
     <Compile Include="ViewModels\BitlyViewModel.cs" />
-    <Compile Include="Models\Clicks.cs" />
-    <Compile Include="Models\ExpandedUrl.cs" />
+    <Compile Include="Models\bit.ly\BitlyClicks.cs" />
+    <Compile Include="Models\bit.ly\BitlyExpandedUrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="URLExpanderAttachement.cs" />
     <Compile Include="URLExpanderPlugin.cs" />

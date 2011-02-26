@@ -10,8 +10,8 @@ namespace URLExpander.ViewModels
 {
   public class BitlyViewModel : ObservableObject
   {
-    private const string Login = "__LOGIN__";
-    private const string ApiKey = "__APIKEY__";
+    private const string Login = "HOW CAN I KEEP FROM PUTTING THIS INTO SOURCE CONTROL...?";
+    private const string ApiKey = "IS THERE A WAY THAT I CAN STORE THIS IN A CONFIG FILE OR SOMETHING...";
 
     private const string BitlyExpand =
       "http://api.bit.ly/v3/expand?login=" + Login + "&apiKey=" + ApiKey + "&shortUrl={0}&format=json";
@@ -96,8 +96,8 @@ namespace URLExpander.ViewModels
     {
       if (args.Error != null) return;
 
-      var serializer = new DataContractJsonSerializer(typeof (BitlyResponse));
-      var ret = serializer.ReadObject(args.Result) as BitlyResponse;
+      var serializer = new DataContractJsonSerializer(typeof (BitlyExpandResponse));
+      var ret = serializer.ReadObject(args.Result) as BitlyExpandResponse;
 
       if (ret == null) return;
 
@@ -112,8 +112,8 @@ namespace URLExpander.ViewModels
     {
       if (args.Error != null) return;
 
-      var serializer = new DataContractJsonSerializer(typeof (BitlyResponse));
-      var result = serializer.ReadObject(args.Result) as BitlyResponse;
+      var serializer = new DataContractJsonSerializer(typeof (BitlyExpandResponse));
+      var result = serializer.ReadObject(args.Result) as BitlyExpandResponse;
 
       if (result == null) return;
 

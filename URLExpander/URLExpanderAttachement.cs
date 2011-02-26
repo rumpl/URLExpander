@@ -9,9 +9,9 @@ namespace URLExpander
   [Export(typeof (ITimelineItemAttachment))]
   public class URLExpanderAttachement : ObservableObject, ITimelineItemAttachment
   {
-    public URLExpanderAttachement(string shortUrl)
+    public URLExpanderAttachement(BitlyViewModel viewModel)
     {
-      Model = new BitlyViewModel(shortUrl);
+      Model = viewModel;
     }
 
     public BitlyViewModel Model { get; set; }
