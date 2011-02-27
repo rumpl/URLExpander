@@ -106,6 +106,7 @@ namespace URLExpander.ViewModels
       if (value == null) return;
       _globalClicks = value.GlobalClicks;
       UserClicks = value.UserClicks;
+      this.OnPropertyChanged("NoC");
     }
 
     private void OnExpandCompleted(object sender, OpenReadCompletedEventArgs args)
