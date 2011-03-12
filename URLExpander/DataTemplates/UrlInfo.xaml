@@ -11,7 +11,7 @@
             <TextBlock Foreground="#FF73A9D8" TextWrapping="Wrap" Text="{Binding Path=Model.Url}">
             </TextBlock>
         </HyperlinkButton>
-        <TextBlock Text="{Binding Path=Model.NoC}" ></TextBlock>
+        <TextBlock Text="{Binding Path=Model.NumberOfClicksText}" ></TextBlock>
     </StackPanel>
 
 </UserControl>

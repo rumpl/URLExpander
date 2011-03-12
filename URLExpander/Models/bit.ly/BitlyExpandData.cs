@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
-
-namespace URLExpander.Models
+﻿namespace URLExpander.Models
 {
-  [DataContract]
-  public class BitlyExpandData
-  {
-    [DataMember(Name = "expand")]
-    public List<BitlyExpandedUrl> Urls { get; set; }
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
 
-    [DataMember(Name = "clicks")]
-    public List<BitlyClicks> Clicks { get; set; }
-  }
+    [DataContract]
+    public class BitlyExpandData
+    {
+        [DataMember(Name = "expand")]
+        public List<BitlyExpandedUrl> Urls { get; set; }
+
+        [DataMember(Name = "clicks")]
+        public List<BitlyClicks> Clicks { get; set; }
+    }
 }

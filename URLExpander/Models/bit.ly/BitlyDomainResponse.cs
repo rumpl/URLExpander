@@ -1,7 +1,7 @@
-﻿using System.Runtime.Serialization;
-
-namespace URLExpander.Models
+﻿namespace URLExpander.Models
 {
+    using System.Runtime.Serialization;
+
     [DataContract]
     public class BitlyDomainResponse : IBitlyResponse
     {

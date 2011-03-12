@@ -2,17 +2,17 @@
 {
     using System;
     using System.Collections.Generic;
-	using System.ComponentModel.Composition;
+    using System.ComponentModel.Composition;
     using System.Linq;
     using System.Text.RegularExpressions;
-	
-	using Seesmic.Sdp.Extensibility;
+
+    using Seesmic.Sdp.Extensibility;
 
     [Export(typeof(ITimelineItemProcessor))]
-    public class URLExpanderProcessor : ITimelineItemProcessor
+    public class UrlExpanderProcessor : ITimelineItemProcessor
     {
         /// <summary>
-        /// A regular expression to match a URL in free text (also includes wrapping paranthesis, to be removed manually after matching)
+        /// A regular expression to match a URL in free text (also includes wrapping parenthesis, to be removed manually after matching)
         /// </summary>
         /// <remarks>
         /// from http://www.codinghorror.com/blog/2008/10/the-problem-with-urls.html
@@ -24,6 +24,12 @@
         ///  Any character in this class: [-A-Za-z0-9+&@#/%=~_()|]
         /// </remarks>
         private static readonly Regex ShortUrlRegex = new Regex(@"\(?\bhttp://[-a-z0-9+&@#/%?=~_()|!:,.;]*[-a-z0-9+&@#/%=~_()|]", RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
+
+        ////[ImportMany(typeof(IUrlExpander))]
+        private readonly IEnumerable<IUrlExpander> _urlExpanders = new[]
+            {
+                new BitlyUrlExpander()
+            };
 
         public bool Filter(TimelineItemContainer timelineItemContainer)
         {
@@ -40,17 +46,18 @@
 
         public void Process(TimelineItemContainer timelineItemContainer)
         {
-            var bitlyExpander = new BitlyUrlExpander(
-                viewModel =>
-                    {
-                        var attachement = new URLExpanderAttachement(viewModel);
-                        timelineItemContainer.AddAttachment(attachement);
-
-                    });
-            
-            foreach (var uri in GetShortUrls(timelineItemContainer))
+            foreach (var bitlyExpander in this._urlExpanders)
             {
-                bitlyExpander.TryExpandAsync(uri);
+                foreach (var uri in GetShortUrls(timelineItemContainer))
+                {
+                    bitlyExpander.IfCanExpand(
+                        uri,
+                        viewModel =>
+                        {
+                            var attachment = new UrlExpanderAttachment(viewModel);
+                            timelineItemContainer.AddAttachment(attachment);
+                        });
+                }
             }
         }
 

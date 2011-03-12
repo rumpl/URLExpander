@@ -1,30 +1,30 @@
-﻿using System.Windows;
-
-namespace URLExpander.DataTemplates
+﻿namespace URLExpander.DataTemplates
 {
-  public partial class UrlInfo
-  {
-    private static readonly DependencyProperty AttachmentProperty;
+    using System.Windows;
 
-    static UrlInfo()
+    public partial class UrlInfo
     {
-      AttachmentProperty = DependencyProperty.Register("Attachment", typeof (URLExpanderAttachement), typeof (UrlInfo), null);
-    }
+        private static readonly DependencyProperty AttachmentProperty;
 
-    public UrlInfo()
-    {
-      InitializeComponent();
-    }
+        static UrlInfo()
+        {
+            AttachmentProperty = DependencyProperty.Register("Attachment", typeof(UrlExpanderAttachment), typeof(UrlInfo), null);
+        }
 
-    public URLExpanderAttachement Attachment
-    {
-      get { return (URLExpanderAttachement) GetValue(AttachmentProperty); }
-      set { SetValue(AttachmentProperty, value); }
-    }
+        public UrlInfo()
+        {
+            InitializeComponent();
+        }
 
-    private void UserControl_Loaded(object sender, RoutedEventArgs e)
-    {
-      DataContext = Attachment;
+        public UrlExpanderAttachment Attachment
+        {
+            get { return (UrlExpanderAttachment)GetValue(AttachmentProperty); }
+            set { SetValue(AttachmentProperty, value); }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = Attachment;
+        }
     }
-  }
 }

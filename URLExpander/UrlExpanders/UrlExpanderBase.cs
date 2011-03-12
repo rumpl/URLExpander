@@ -5,8 +5,9 @@
     using System.Runtime.Serialization.Json;
 
     using URLExpander.Models;
+    using URLExpander.ViewModels;
 
-    public abstract class UrlExpanderBase
+    public abstract class UrlExpanderBase: IUrlExpander
     {
         protected void MakeWebRequestAsync<T>(DataContractJsonSerializer deserializer, Uri address, Action<T> callback) where T : class, IBitlyResponse
         {
@@ -26,5 +27,7 @@
 
             webClient.OpenReadAsync(address);
         }
+
+        public abstract void IfCanExpand(Uri uri, Action<IExpandedUrlViewModel> callback);
     }
 }

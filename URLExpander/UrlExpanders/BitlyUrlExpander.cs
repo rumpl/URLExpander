@@ -8,6 +8,7 @@
     using URLExpander.Models;
     using URLExpander.ViewModels;
 
+    ////[System.ComponentModel.Composition.Export(typeof(IUrlExpander))]
     public class BitlyUrlExpander : UrlExpanderBase
     {
         private const string BitlyUsername = "IS THERE A WAY THAT I CAN STORE THIS IN A CONFIG FILE OR SOMETHING...";
@@ -32,14 +33,7 @@
                                                                                                                                  { "n.pr", true }
                                                                                                                              };
 
-        private readonly Action<BitlyViewModel> callback;
-
-        public BitlyUrlExpander(Action<BitlyViewModel> callback)
-        {
-            this.callback = callback;
-        }
-
-        public void TryExpandAsync(Uri uri)
+        public override void IfCanExpand(Uri uri, Action<IExpandedUrlViewModel> callback)
         {
             // per http://code.google.com/p/bitly-api/wiki/ApiDocumentation#/v3/bitly_pro_domain
             // "bitly.pro domains are restricted to less than 15 characters in length"
@@ -53,31 +47,48 @@
             {
                 if (isBitlyDomain)
                 {
-                    this.DoCallback(uri);
+                    this.DoCallback(uri, callback);
                 }
             }
             else
             {
                 this.MakeBitlyWebRequestAsync(
-                    string.Format("bitly_pro_domain?domain={0}", HttpUtility.UrlEncode(uri.DnsSafeHost)),
+                    DomainResponseDeserializer, 
+                    string.Format("bitly_pro_domain?domain={0}", HttpUtility.UrlEncode(uri.DnsSafeHost)), 
                     (BitlyDomainResponse result) =>
+                    {
+                        Domains[uri.DnsSafeHost] = result.Data.IsBitlyProDomain;
+
+                        if (!result.Data.IsBitlyProDomain)
                         {
-                            Domains[uri.DnsSafeHost] = result.Data.IsBitlyProDomain;
+                            return;
+                        }
 
-                            if (!result.Data.IsBitlyProDomain)
-                            {
-                                return;
-                            }
-
-                            this.DoCallback(uri);
-                        });
+                        this.DoCallback(uri, callback);
+                    });
             }
         }
 
-        private void MakeBitlyWebRequestAsync<T>(string relativeUrl, Action<T> webRequestCallback) where T : class, IBitlyResponse
+        public void ExpandUrl(string shortUrl, Action<BitlyExpandResponse> callback)
+        {
+            this.MakeBitlyWebRequestAsync(
+                ExpandResponseDeserializer,
+                string.Format("expand?shortUrl={0}", HttpUtility.UrlEncode(shortUrl)),
+                callback);
+        }
+
+        public void GetNumberOfClicks(string shortUrl, Action<BitlyExpandResponse> callback)
+        {
+            this.MakeBitlyWebRequestAsync(
+                ExpandResponseDeserializer,
+                string.Format("clicks?shortUrl={0}", HttpUtility.UrlEncode(shortUrl)),
+                callback);
+        }
+
+        private void MakeBitlyWebRequestAsync<T>(DataContractJsonSerializer responseDeserializer, string relativeUrl, Action<T> webRequestCallback) where T : class, IBitlyResponse
         {
             this.MakeWebRequestAsync(
-                DomainResponseDeserializer,
+                responseDeserializer,
                 new Uri(
                     BitlyApiBaseUri,
                     relativeUrl +
@@ -85,11 +96,11 @@
                 webRequestCallback);
         }
 
-        private void DoCallback(Uri uri)
+        private void DoCallback(Uri uri, Action<IExpandedUrlViewModel> callback)
         {
-            if (this.callback != null)
+            if (callback != null)
             {
-                this.callback(new BitlyViewModel(uri.AbsoluteUri));
+                callback(new BitlyViewModel(this, uri.AbsoluteUri));
             }
         }
     }
