@@ -1,13 +1,14 @@
 ﻿namespace URLExpander
 {
     using System;
+    using System.ComponentModel.Composition;
     using System.Runtime.Serialization.Json;
     using System.Windows.Browser;
 
     using URLExpander.Models;
     using URLExpander.ViewModels;
 
-    ////[System.ComponentModel.Composition.Export(typeof(IUrlExpander))]
+    [Export(typeof(IUrlExpander))]
     public class GooglUrlExpander : UrlExpanderBase
     {
         private const string ApiKey = "Get your own API key: http://code.google.com/apis/urlshortener/v1/authentication.html#key";

@@ -2,13 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.Composition;
     using System.Runtime.Serialization.Json;
     using System.Windows.Browser;
 
     using URLExpander.Models;
     using URLExpander.ViewModels;
 
-    ////[System.ComponentModel.Composition.Export(typeof(IUrlExpander))]
+    [Export(typeof(IUrlExpander))]
     public class BitlyUrlExpander : UrlExpanderBase
     {
         private const string BitlyUsername = "IS THERE A WAY THAT I CAN STORE THIS IN A CONFIG FILE OR SOMETHING...";
