@@ -9,7 +9,7 @@
 
     public abstract class UrlExpanderBase: IUrlExpander
     {
-        protected void MakeWebRequestAsync<T>(DataContractJsonSerializer deserializer, Uri address, Action<T> callback) where T : class, IBitlyResponse
+        protected void MakeWebRequestAsync<T>(DataContractJsonSerializer deserializer, Uri address, Action<T> callback) where T : class, IResponse
         {
             var webClient = new WebClient();
             webClient.OpenReadCompleted += (sender, args) =>
@@ -17,7 +17,7 @@
                     if (args.Error != null) return;
 
                     var result = deserializer.ReadObject(args.Result) as T;
-                    if (result == null || result.StatusCode != 200) return;
+                    if (result == null || !result.IsSuccessfulResponse) return;
 
                     if (callback != null)
                     {

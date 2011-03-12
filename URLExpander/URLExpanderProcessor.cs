@@ -26,9 +26,10 @@
         private static readonly Regex ShortUrlRegex = new Regex(@"\(?\bhttp://[-a-z0-9+&@#/%?=~_()|!:,.;]*[-a-z0-9+&@#/%=~_()|]", RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
 
         ////[ImportMany(typeof(IUrlExpander))]
-        private readonly IEnumerable<IUrlExpander> _urlExpanders = new[]
+        private readonly IEnumerable<IUrlExpander> _urlExpanders = new IUrlExpander[]
             {
-                new BitlyUrlExpander()
+                new BitlyUrlExpander(),
+                new GooglUrlExpander(),
             };
 
         public bool Filter(TimelineItemContainer timelineItemContainer)

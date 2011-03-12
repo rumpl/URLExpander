@@ -85,14 +85,13 @@
                 callback);
         }
 
-        private void MakeBitlyWebRequestAsync<T>(DataContractJsonSerializer responseDeserializer, string relativeUrl, Action<T> webRequestCallback) where T : class, IBitlyResponse
+        private void MakeBitlyWebRequestAsync<T>(DataContractJsonSerializer responseDeserializer, string relativeUrl, Action<T> webRequestCallback) where T : class, IResponse
         {
             this.MakeWebRequestAsync(
                 responseDeserializer,
                 new Uri(
                     BitlyApiBaseUri,
-                    relativeUrl +
-                    string.Format("&apiKey={0}&login={1}&format=json", HttpUtility.UrlEncode(BitlyApiKey), HttpUtility.UrlEncode(BitlyUsername))),
+                    relativeUrl + string.Format("&apiKey={0}&login={1}&format=json", HttpUtility.UrlEncode(BitlyApiKey), HttpUtility.UrlEncode(BitlyUsername))),
                 webRequestCallback);
         }
 
