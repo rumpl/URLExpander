@@ -28,7 +28,7 @@
         {
             this.MakeIsgdWebRequestAsync(
                 ExpandResponseDeserializer,
-                string.Format("format.php?shorturl={0}", HttpUtility.UrlEncode(shortUrl)),
+                string.Format("forward.php?shorturl={0}", HttpUtility.UrlEncode(shortUrl)),
                 callback);
         }
 

@@ -2,6 +2,7 @@
 {
     using System.Runtime.Serialization;
 
+    [DataContract]
     public abstract class BitlyResponseBase : IResponse
     {
         [DataMember(Name = "status_code")]

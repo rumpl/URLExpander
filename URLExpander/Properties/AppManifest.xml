@@ -6,7 +6,7 @@
     <s:Id>AA1C2920-63B7-49A0-9BE4-011EDB81C2E8</s:Id>
     <s:Name>URL Expander</s:Name>
     <s:Description>Expands shortened links (biy.ly and others...)</s:Description>
-    <s:Version>0.0.1.0</s:Version>
+    <s:Version>0.0.2.0</s:Version>
     <s:Vendor>Dordje Lukic</s:Vendor>
     <s:Copyright>Djordje Lukic</s:Copyright>
     <s:HomepageUrl>http://www.rumpl.org</s:HomepageUrl>
