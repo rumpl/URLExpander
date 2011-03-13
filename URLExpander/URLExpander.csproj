@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="Models\bit.ly\BitlyExpandResponse.cs" />
     <Compile Include="Models\bit.ly\BitlyResponseBase.cs" />
+    <Compile Include="Models\is.gd\IsgdExpandResponse.cs" />
     <Compile Include="Models\IResponse.cs" />
     <Compile Include="Models\goo.gl\GooglAnalytics.cs" />
     <Compile Include="Models\goo.gl\GoogleAnalyticsDetails.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="DataTemplates\UrlInfo.xaml.cs">
       <DependentUpon>UrlInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UrlExpanders\IsgdUrlExpander.cs" />
     <Compile Include="UrlExpanders\GooglUrlExpander.cs" />
     <Compile Include="UrlExpanders\IUrlExpander.cs" />
     <Compile Include="Models\bit.ly\BitlyExpandData.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="UrlExpanderAttachment.cs" />
     <Compile Include="UrlExpanderPlugin.cs" />
     <Compile Include="UrlExpanderProcessor.cs" />
+    <Compile Include="ViewModels\IsgdViewModel.cs" />
     <Compile Include="ViewModels\GooglViewModel.cs" />
     <Compile Include="ViewModels\ExpandedUrlViewModelBase.cs" />
     <Compile Include="ViewModels\IExpandedUrlViewModel.cs" />

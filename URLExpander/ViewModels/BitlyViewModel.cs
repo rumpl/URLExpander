@@ -10,8 +10,8 @@ namespace URLExpander.ViewModels
         private bool _expanded;
         private bool _numberOfClicks;
         private string _url;
-        private int _globalClicks;
-        private int _userClicks;
+        private int? _globalClicks;
+        private int? _userClicks;
 
         public BitlyViewModel(BitlyUrlExpander bitlyUrlExpander, string shortUrl)
         {
@@ -19,7 +19,7 @@ namespace URLExpander.ViewModels
             _shortUrl = shortUrl;
         }
 
-        public override int UserClicks
+        public override int? UserClicks
         {
             get
             {
@@ -32,13 +32,13 @@ namespace URLExpander.ViewModels
             }
             set
             {
-                _userClicks = value;
+                _userClicks = value ?? 0;
                 OnPropertyChanged("UserClicks");
                 OnPropertyChanged("NumberOfClicksText");
             }
         }
 
-        public override int GlobalClicks
+        public override int? GlobalClicks
         {
             get
             {
@@ -51,7 +51,7 @@ namespace URLExpander.ViewModels
             }
             set
             {
-                _globalClicks = value;
+                _globalClicks = value ?? 0;
                 OnPropertyChanged("GlobalClicks");
                 OnPropertyChanged("NumberOfClicksText");
             }

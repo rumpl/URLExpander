@@ -9,8 +9,8 @@
 
         private bool _expanded;
         private string _url;
-        private int _globalClicks;
-        private int _userClicks;
+        private int? _globalClicks;
+        private int? _userClicks;
 
         public GooglViewModel(GooglUrlExpander googlUrlExpander, string shortUrl)
         {
@@ -18,7 +18,7 @@
             _shortUrl = shortUrl;
         }
 
-        public override int UserClicks
+        public override int? UserClicks
         {
             get
             {
@@ -31,13 +31,13 @@
             }
             set
             {
-                _userClicks = value;
+                _userClicks = value ?? 0;
                 OnPropertyChanged("UserClicks");
                 OnPropertyChanged("NumberOfClicksText");
             }
         }
 
-        public override int GlobalClicks
+        public override int? GlobalClicks
         {
             get
             {
@@ -49,7 +49,7 @@
             }
             set
             {
-                _globalClicks = value;
+                _globalClicks = value ?? 0;
                 OnPropertyChanged("GlobalClicks");
                 OnPropertyChanged("NumberOfClicksText");
             }

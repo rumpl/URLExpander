@@ -1,6 +1,5 @@
 ﻿namespace URLExpander.Models
 {
-    using System;
     using System.Runtime.Serialization;
 
     [DataContract]
@@ -17,7 +16,7 @@
 
         public bool IsSuccessfulResponse
         {
-            get { return this.StatusText == "OK"; }
+            get { return StatusText == "OK"; }
         }
     }
 }
