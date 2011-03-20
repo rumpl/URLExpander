@@ -1,8 +1,9 @@
-﻿namespace URLExpander
+﻿using URLExpander.Serializers;
+
+namespace URLExpander
 {
     using System;
     using System.ComponentModel.Composition;
-    using System.Runtime.Serialization.Json;
     using System.Windows.Browser;
 
     using URLExpander.Models;
@@ -15,7 +16,7 @@
 
         private static readonly Uri GooglApiBaseUri = new Uri("https://www.googleapis.com/urlshortener/v1/");
 
-        private static readonly DataContractJsonSerializer ExpandResponseDeserializer = new DataContractJsonSerializer(typeof(GooglExpandResponse));
+        private static readonly JsonSerializer ExpandResponseDeserializer = new JsonSerializer();
 
         public override void IfCanExpand(Uri uri, Action<IExpandedUrlViewModel> callback)
         {
@@ -35,7 +36,7 @@
                 callback);
         }
 
-        private void MakeGooglWebRequestAsync(DataContractJsonSerializer responseDeserializer, string relativeUrl, Action<GooglExpandResponse> webRequestCallback)
+        private void MakeGooglWebRequestAsync(ISerializer responseDeserializer, string relativeUrl, Action<GooglExpandResponse> webRequestCallback)
         {
             this.MakeWebRequestAsync(
                 responseDeserializer,

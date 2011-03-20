@@ -67,23 +67,41 @@
     </Reference>
     <Reference Include="Seesmic.Sdp.Utils">
       <HintPath>..\Lib\Seesmic.Sdp.Utils.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="System.ComponentModel.Composition, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.ComponentModel.DataAnnotations, Version=2.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217" />
+    <Reference Include="System.ComponentModel.Composition, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=2.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Runtime.Serialization.Json, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.ServiceModel.DomainServices.Client, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Runtime.Serialization.Json, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel.DomainServices.Client, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Controls.Data.Input, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.Windows.Controls.DomainServices, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.Windows.Controls.Navigation, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Windows.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Controls.Data.Input, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Controls.DomainServices, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Navigation, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Serialization, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\bit.ly\BitlyExpandResponse.cs" />
@@ -92,6 +110,10 @@
     <Compile Include="Models\IResponse.cs" />
     <Compile Include="Models\goo.gl\GooglAnalytics.cs" />
     <Compile Include="Models\goo.gl\GoogleAnalyticsDetails.cs" />
+    <Compile Include="Models\post.ly\PostLyExpandResponse.cs" />
+    <Compile Include="Serializers\ISerializer.cs" />
+    <Compile Include="Serializers\JsonSerializer.cs" />
+    <Compile Include="Serializers\XmlSerializer.cs" />
     <Compile Include="UrlExpanders\BitlyUrlExpander.cs" />
     <Compile Include="DataTemplates\UrlInfo.xaml.cs">
       <DependentUpon>UrlInfo.xaml</DependentUpon>
@@ -103,6 +125,7 @@
     <Compile Include="Models\goo.gl\GooglExpandResponse.cs" />
     <Compile Include="Models\bit.ly\BitlyDomainResponse.cs" />
     <Compile Include="Models\bit.ly\BitlyDomainData.cs" />
+    <Compile Include="UrlExpanders\PostlyUrlExpander.cs" />
     <Compile Include="UrlExpanders\UrlExpanderBase.cs" />
     <Compile Include="ViewModels\BitlyViewModel.cs" />
     <Compile Include="Models\bit.ly\BitlyClicks.cs" />
@@ -115,6 +138,7 @@
     <Compile Include="ViewModels\GooglViewModel.cs" />
     <Compile Include="ViewModels\ExpandedUrlViewModelBase.cs" />
     <Compile Include="ViewModels\IExpandedUrlViewModel.cs" />
+    <Compile Include="ViewModels\PostlyViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml">

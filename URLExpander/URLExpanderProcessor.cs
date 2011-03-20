@@ -43,11 +43,11 @@
 
         public void Process(TimelineItemContainer timelineItemContainer)
         {
-            foreach (var bitlyExpander in this._urlExpanders)
+            foreach (var expander in _urlExpanders)
             {
                 foreach (var uri in GetShortUrls(timelineItemContainer))
                 {
-                    bitlyExpander.IfCanExpand(
+                    expander.IfCanExpand(
                         uri,
                         viewModel =>
                         {

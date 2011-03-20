@@ -1,7 +1,5 @@
 ﻿namespace URLExpander.ViewModels
 {
-    using System.Linq;
-
     public class GooglViewModel : ExpandedUrlViewModelBase
     {
         private readonly GooglUrlExpander _googlUrlExpander;

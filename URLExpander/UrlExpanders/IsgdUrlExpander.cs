@@ -1,8 +1,9 @@
-﻿namespace URLExpander
+﻿using URLExpander.Serializers;
+
+namespace URLExpander
 {
     using System;
     using System.ComponentModel.Composition;
-    using System.Runtime.Serialization.Json;
     using System.Windows.Browser;
 
     using URLExpander.Models;
@@ -12,7 +13,7 @@
     public class IsgdUrlExpander : UrlExpanderBase
     {
         private static readonly Uri IsgdApiBaseUri = new Uri("http://is.gd/");
-        private static readonly DataContractJsonSerializer ExpandResponseDeserializer = new DataContractJsonSerializer(typeof(IsgdExpandResponse));
+        private static readonly JsonSerializer ExpandResponseDeserializer = new JsonSerializer();
 
         public override void IfCanExpand(Uri uri, Action<IExpandedUrlViewModel> callback)
         {
@@ -32,7 +33,7 @@
                 callback);
         }
 
-        private void MakeIsgdWebRequestAsync(DataContractJsonSerializer responseDeserializer, string relativeUrl, Action<IsgdExpandResponse> webRequestCallback)
+        private void MakeIsgdWebRequestAsync(ISerializer responseDeserializer, string relativeUrl, Action<IsgdExpandResponse> webRequestCallback)
         {
             this.MakeWebRequestAsync(
                 responseDeserializer,

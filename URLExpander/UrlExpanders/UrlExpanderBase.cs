@@ -1,23 +1,29 @@
-﻿namespace URLExpander
+﻿using System.ComponentModel.Composition;
+using Seesmic.Sdp.Extensibility;
+using URLExpander.Serializers;
+
+namespace URLExpander
 {
     using System;
     using System.Net;
-    using System.Runtime.Serialization.Json;
 
     using URLExpander.Models;
     using URLExpander.ViewModels;
 
     public abstract class UrlExpanderBase: IUrlExpander
     {
-        protected void MakeWebRequestAsync<T>(DataContractJsonSerializer deserializer, Uri address, Action<T> callback) where T : class, IResponse
+        protected void MakeWebRequestAsync<T>(ISerializer deserializer, Uri address, Action<T> callback) where T : class, IResponse
         {
             var webClient = new WebClient();
             webClient.OpenReadCompleted += (sender, args) =>
                 {
-                    if (args.Error != null) return;
+                    if (args == null || args.Error != null) return;
 
-                    var result = deserializer.ReadObject(args.Result) as T;
-                    if (result == null || !result.IsSuccessfulResponse) return;
+                    var result = deserializer.ReadObject<T>(args.Result);
+                    if (result == null || !result.IsSuccessfulResponse)
+                    {
+                        return;
+                    }
 
                     if (callback != null)
                     {

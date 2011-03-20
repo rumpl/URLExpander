@@ -1,13 +1,14 @@
-﻿namespace URLExpander
+﻿using URLExpander.Serializers;
+
+namespace URLExpander
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
-    using System.Runtime.Serialization.Json;
     using System.Windows.Browser;
 
-    using URLExpander.Models;
-    using URLExpander.ViewModels;
+    using Models;
+    using ViewModels;
 
     [Export(typeof(IUrlExpander))]
     public class BitlyUrlExpander : UrlExpanderBase
@@ -18,8 +19,8 @@
 
         private static readonly Uri BitlyApiBaseUri = new Uri("http://api.bitly.com/v3/");
 
-        private static readonly DataContractJsonSerializer DomainResponseDeserializer = new DataContractJsonSerializer(typeof(BitlyDomainResponse));
-        private static readonly DataContractJsonSerializer ExpandResponseDeserializer = new DataContractJsonSerializer(typeof(BitlyExpandResponse));
+        private static readonly JsonSerializer DomainResponseDeserializer = new JsonSerializer();
+        private static readonly JsonSerializer ExpandResponseDeserializer = new JsonSerializer();
 
         private static readonly Dictionary<string, bool> Domains = new Dictionary<string, bool>(100, StringComparer.Ordinal) {
                                                                                                                                  { "bit.ly", true },
@@ -48,12 +49,12 @@
             {
                 if (isBitlyDomain)
                 {
-                    this.DoCallback(uri, callback);
+                    DoCallback(uri, callback);
                 }
             }
             else
             {
-                this.MakeBitlyWebRequestAsync(
+                MakeBitlyWebRequestAsync(
                     DomainResponseDeserializer, 
                     string.Format("bitly_pro_domain?domain={0}", HttpUtility.UrlEncode(uri.DnsSafeHost)), 
                     (BitlyDomainResponse result) =>
@@ -65,14 +66,14 @@
                             return;
                         }
 
-                        this.DoCallback(uri, callback);
+                        DoCallback(uri, callback);
                     });
             }
         }
 
         public void ExpandUrl(string shortUrl, Action<BitlyExpandResponse> callback)
         {
-            this.MakeBitlyWebRequestAsync(
+            MakeBitlyWebRequestAsync(
                 ExpandResponseDeserializer,
                 string.Format("expand?shortUrl={0}", HttpUtility.UrlEncode(shortUrl)),
                 callback);
@@ -80,15 +81,15 @@
 
         public void GetNumberOfClicks(string shortUrl, Action<BitlyExpandResponse> callback)
         {
-            this.MakeBitlyWebRequestAsync(
+            MakeBitlyWebRequestAsync(
                 ExpandResponseDeserializer,
                 string.Format("clicks?shortUrl={0}", HttpUtility.UrlEncode(shortUrl)),
                 callback);
         }
 
-        private void MakeBitlyWebRequestAsync<T>(DataContractJsonSerializer responseDeserializer, string relativeUrl, Action<T> webRequestCallback) where T : class, IResponse
+        private void MakeBitlyWebRequestAsync<T>(ISerializer responseDeserializer, string relativeUrl, Action<T> webRequestCallback) where T : class, IResponse
         {
-            this.MakeWebRequestAsync(
+            MakeWebRequestAsync(
                 responseDeserializer,
                 new Uri(
                     BitlyApiBaseUri,

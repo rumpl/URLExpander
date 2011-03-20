@@ -1,7 +1,5 @@
 ﻿namespace URLExpander.ViewModels
 {
-    using System.Linq;
-
     public class IsgdViewModel : ExpandedUrlViewModelBase
     {
         private readonly IsgdUrlExpander _isgdUrlExpander;
